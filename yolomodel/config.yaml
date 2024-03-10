@@ -1,0 +1,7 @@
+path: /home/yash/Documents/Projects/Condensadynam/yolomodel/data
+train: images/train
+val: images/train
+
+# Classes
+names:
+  0: droplet
