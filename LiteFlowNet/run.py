@@ -381,7 +381,7 @@ def velocity_bounding_box(vectors, fnum, file_input):
             x2 = int(x2)
             y1 = int(y1)
             y2 = int(y2)
-            resultant = numpy.sum(vectors[x1:x2+1][y1:y2+1], axis=(0, 1))
+            resultant = numpy.sum(vectors[x1:x2+1, y1:y2+1], axis=(0, 1))
             file_input.write("{}, {}\n".format(resultant[0], resultant[1]))
             
 def main(args_strOne, args_strTwo, fnum, file):
