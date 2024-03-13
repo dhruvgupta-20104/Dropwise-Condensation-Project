@@ -1,3 +1,4 @@
+import subprocess
 import cv2
 from run import *
 
@@ -17,6 +18,6 @@ while ret:
     cv2.imwrite('frame_1.png', frame)
     cv2.imwrite('frame_2.png', next_frame)
     if frame_num%k==0:
-        frame = next_frame
         main('frame_1.png', 'frame_2.png', frame_num, file)
+    frame = next_frame
     ret, nex_frame = cap.read()
