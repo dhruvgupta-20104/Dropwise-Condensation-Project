@@ -1,4 +1,3 @@
-import subprocess
 import cv2
 from run import *
 
