@@ -3,14 +3,16 @@ from ultralytics import YOLO
 import cv2
 
 VIDEOS_DIR = os.path.join('.', 'videos')
-print(VIDEOS_DIR)
 
 video_path = os.path.join(VIDEOS_DIR, 'Cu_DLC')
 video_path_out = '{}_out_withoutlabel.mp4'.format(video_path)
 video_path = video_path + ".mp4"
 
+print(video_path)
+
 cap = cv2.VideoCapture(video_path)
 ret, frame = cap.read()
+
 H, W, _ = frame.shape
 out = cv2.VideoWriter(video_path_out, cv2.VideoWriter_fourcc(*'MP4V'), int(cap.get(cv2.CAP_PROP_FPS)), (W, H))
 
