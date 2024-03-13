@@ -14,7 +14,7 @@ while ret:
     frame_num+=1
     if frame_num%50==0:
       print(frame_num)
-    cv2.imwrite('frame_1.png', frame)
+    cv2.imwrite('frame_1.png', frame)  
     cv2.imwrite('frame_2.png', next_frame)
     if frame_num%k==0:
         main('frame_1.png', 'frame_2.png', frame_num, file)
