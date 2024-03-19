@@ -372,9 +372,10 @@ def estimate(tenOne, tenTwo):
 
 ##########################################################
 
-def velocity_bounding_box(vectors, fnum, file_input):
-    file_path = '..\coordinates_bounding_box\Frame_{}.txt'.format(fnum)
+def velocity_bounding_box(vectors, fnum, file_input, k):
+    file_path = '..\coordinates_bounding_box\Frame_{}.txt'.format(fnum-k)
     with open(file_path, 'r') as file:
+        line_number = 1
         for line in file:
             x1, y1, x2, y2 = line.split()
             x1 = int(x1)
@@ -382,9 +383,10 @@ def velocity_bounding_box(vectors, fnum, file_input):
             y1 = int(y1)
             y2 = int(y2)
             resultant = numpy.sum(vectors[x1:x2+1, y1:y2+1], axis=(0, 1))
-            file_input.write("{}, {}\n".format(resultant[0], resultant[1]))
+            file_input.write("{}, {}, {}, {}\n".format(fnum-k, line_number, resultant[0], resultant[1]))
+            line_number+=1
             
-def main(args_strOne, args_strTwo, fnum, file):
+def main(args_strOne, args_strTwo, fnum, file, k):
     tenOne = torch.FloatTensor(numpy.ascontiguousarray(numpy.array(PIL.Image.open(args_strOne))[:, :, ::-1].transpose(2, 0, 1).astype(numpy.float32) * (1.0 / 255.0)))
     tenTwo = torch.FloatTensor(numpy.ascontiguousarray(numpy.array(PIL.Image.open(args_strTwo))[:, :, ::-1].transpose(2, 0, 1).astype(numpy.float32) * (1.0 / 255.0)))
 
@@ -393,7 +395,7 @@ def main(args_strOne, args_strTwo, fnum, file):
     # print(numpy.array([ 80, 73, 69, 72 ], numpy.uint8))
     # print(numpy.array([ tenOutput.shape[2], tenOutput.shape[1] ], numpy.int32))
     vectors = numpy.array(tenOutput.numpy().transpose(1, 2, 0), numpy.float32)
-    velocity_bounding_box(vectors, fnum, file)
+    velocity_bounding_box(vectors, fnum, file, k)
 
 
 # end
