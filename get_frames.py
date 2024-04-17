@@ -1,6 +1,6 @@
 import cv2
 
-video_path = 'Cu_DLC_out_withoutlabel.mp4'
+video_path = 'Cu_DLC.mp4'
 cap = cv2.VideoCapture(video_path)
 ret, frame = cap.read()
 
